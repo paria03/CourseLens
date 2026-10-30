@@ -1,6 +1,6 @@
 # CourseLens — Dataset and Evaluation Plan
 
-CourseLens is a study assistant that takes a student's question in plain language and retrieves the lecture material that answers it. This document describes the data we evaluate on and how we will measure retrieval quality.
+CourseLens is a study assistant that takes a student's question in plain language and retrieves the lecture material that answers it. This document describes the data we evaluate on, how we measure retrieval quality, and the initial results from our TF-IDF baseline.
 
 ## 1. Dataset Overview
 
@@ -78,23 +78,44 @@ Here Top-1 = 1/3 and Top-3 = 2/3.
 
 ## 5. Evaluation Comparison
 
-We will report Top-1 and Top-3 for:
+We report Top-1 and Top-3 for:
 
 - **All 30 questions** (the headline numbers).
-- **Direct vs paraphrased** (15 each). This is the main comparison: a keyword-based retriever should do noticeably worse on paraphrased questions, and a meaning-based retriever should narrow that gap. The four pairs give a like-for-like check of the same answer under different wording.
+- **Direct vs paraphrased** (15 each). This is the main comparison. We expect a keyword-based retriever to do worse on paraphrased questions; whether a meaning-based retriever narrows that gap is a question for later experiments. The four pairs give a like-for-like check of the same answer under different wording.
 - **Lecture 3 vs Lecture 4** (15 each), to spot a system that favours one lecture.
 
-For each miss we will also note what was retrieved instead: a related slide (e.g. a summary slide, or the same concept in the other lecture) or something unrelated.
+These are overlapping breakdowns of the same 30 questions, not separate datasets. For each miss we will also note what was retrieved instead: a related slide (e.g. a summary slide, or the same concept in the other lecture) or something unrelated.
 
-## 6. Current Status
+## 6. Initial TF-IDF Results
+
+Our first baseline represents each of the 91 chunks as a TF-IDF vector, ranks chunks by cosine similarity to the question, and scores the ranking against `correct_chunk_id` as described in section 4. Results on all 30 questions, as presented in Project Update 2:
+
+| Question group | Questions | Top-1 | Top-3 |
+|---|---|---|---|
+| All questions | 30 | 8/30 (26.7%) | 16/30 (53.3%) |
+| Direct | 15 | 6/15 (40.0%) | 12/15 (80.0%) |
+| Paraphrased | 15 | 2/15 (13.3%) | 4/15 (26.7%) |
+| Lecture 3 | 15 | 3/15 (20.0%) | 6/15 (40.0%) |
+| Lecture 4 | 15 | 5/15 (33.3%) | 10/15 (66.7%) |
+
+- **Direct questions did much better than paraphrased ones** (Top-3: 80.0% vs 26.7%). This fits what a keyword-weighting method would be expected to do: it finds the slide far more often when the question shares the slide's vocabulary.
+- **Lecture 4 questions did better than Lecture 3 questions** in this run. With 15 questions per group, these gaps rest on a handful of questions and should be read as initial observations.
+- **Next step:** the gap between direct and paraphrased questions motivates testing semantic retrieval, such as word embeddings, on the same 30 questions. These results do not show that such methods will perform better; that has to be measured.
+
+## 7. Current Status
 
 - **Dataset complete.** All 30 questions have a `correct_chunk_id`, and every one was verified by reading the chunk text, not just by matching document and page. A chunk was accepted only if it fully answers the question by itself. The supporting slide evidence for each question is recorded in a separate review document (`question_review.md`).
-- **Retrieval evaluation has not been run yet.** No Top-1 or Top-3 results exist so far.
+- **TF-IDF baseline and initial evaluation complete.** Top-1 and Top-3 results for all 30 questions are in section 6.
+- **Still planned:**
+  - a keyword-only baseline for comparison;
+  - parameter tuning (no parameter search has been run yet);
+  - error analysis of individual misses;
+  - semantic retrieval experiments, such as word embeddings, on the same labeled questions.
 
-## 7. Limitations
+## 8. Limitations
 
-- **Small dataset.** With 30 questions, each question is worth about 3.3 percentage points, so small differences between systems should not be over-interpreted.
-- **Overlapping concepts.** Some ideas appear on more than one slide, such as Laplace smoothing and Bayes' Rule in both lectures, and the summary slides that restate earlier definitions. Because each question has a single correct chunk, retrieving a related slide counts as a miss even when it is relevant. We will flag these cases in the error analysis rather than count them as correct.
+- **Small dataset.** With 30 questions, each question is worth about 3.3 percentage points overall and 6.7 points within a 15-question group, so small differences between systems or groups should not be over-interpreted.
+- **Exact chunk-ID scoring and overlapping concepts.** Some ideas appear on more than one slide, such as Laplace smoothing and Bayes' Rule in both lectures, and the summary slides that restate earlier definitions. Because each question has a single correct chunk, retrieving a related slide counts as a miss even when it is relevant. We will flag these cases in the error analysis rather than count them as correct.
 - **Text-extraction issues.** Chunks contain text extracted from the slides, so:
   - formulas that appear only as images are missing;
   - tables come out flattened;
