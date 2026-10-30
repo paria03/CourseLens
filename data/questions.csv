@@ -1,0 +1,31 @@
+question_id,question,question_type,document,page,correct_chunk_id
+Q01,What is the definition of a language model?,direct,03 - Language Models.pdf,5,L03_p05
+Q02,How can a computer figure out whether a sentence sounds natural instead of being a random jumble of words?,paraphrased,03 - Language Models.pdf,5,L03_p05
+Q03,Why isn't just counting how often each word appears enough to tell a real sentence apart from a scrambled one?,paraphrased,03 - Language Models.pdf,10,L03_p10
+Q04,What is the Markov assumption in n-gram language models?,direct,03 - Language Models.pdf,15,L03_p15
+Q05,Why do n-gram models only look at the previous one or two words instead of everything earlier in the sentence?,paraphrased,03 - Language Models.pdf,15,L03_p15
+Q06,Could the same probability model we use for predicting words also help sort messages into junk vs. not junk?,paraphrased,03 - Language Models.pdf,24,L03_p24
+Q07,"Why would my model give a perfectly reasonable sentence like ""I like rain"" a probability of zero?",paraphrased,03 - Language Models.pdf,28,L03_p28
+Q08,What is perplexity and how is it defined for a language model?,direct,03 - Language Models.pdf,29,L03_p29
+Q09,"If a model has a perplexity of 10, what does that mean, and is a lower or higher number better?",direct,03 - Language Models.pdf,30,L03_p30
+Q10,How does Laplace (add-one) smoothing work?,direct,03 - Language Models.pdf,32,L03_p32
+Q11,Why does Laplace smoothing overcorrect when the vocabulary is large?,direct,03 - Language Models.pdf,36,L03_p36
+Q12,How do you choose the value of k in add-k smoothing?,direct,03 - Language Models.pdf,39,L03_p39
+Q13,What should a language model do when it runs into a word it never saw during training?,paraphrased,03 - Language Models.pdf,41,L03_p41
+Q14,What is the difference between backoff and interpolation in n-gram models?,direct,03 - Language Models.pdf,42,L03_p42
+Q15,Why can a word that is very common overall still be a bad guess for the next word in a particular phrase?,paraphrased,03 - Language Models.pdf,50,L03_p50
+Q16,"Why is Naive Bayes called ""naive""?",direct,04 - Statistical Task Classification.pdf,8,L04_p08
+Q17,What does it mean to treat a document as a bag of words in Naive Bayes?,direct,04 - Statistical Task Classification.pdf,10,L04_p10
+Q18,Does the order of the words in an email matter when Naive Bayes decides whether it's spam?,paraphrased,04 - Statistical Task Classification.pdf,10,L04_p10
+Q19,"If the probabilities Naive Bayes calculates aren't accurate, how can it still classify text so well?",paraphrased,04 - Statistical Task Classification.pdf,12,L04_p12
+Q20,How does Laplace smoothing fix the zero-probability problem in Naive Bayes?,direct,04 - Statistical Task Classification.pdf,13,L04_p13
+Q21,"What makes a word a good signal of what one part of my notes is about, and why isn't just filtering out common filler words enough?",paraphrased,04 - Statistical Task Classification.pdf,15,L04_p15
+Q22,"Using the basic IDF formula, why does a word that appears in every document receive a score of zero?",paraphrased,04 - Statistical Task Classification.pdf,18,L04_p18
+Q23,How can TF-IDF and cosine similarity be used to find the document that best matches a search query?,direct,04 - Statistical Task Classification.pdf,23,L04_p23
+Q24,"Why does Naive Bayes have trouble with negative reviews that use words like ""not""?",paraphrased,04 - Statistical Task Classification.pdf,26,L04_p26
+Q25,What is the difference between a generative and a discriminative classifier?,direct,04 - Statistical Task Classification.pdf,27,L04_p27
+Q26,Is there a classifier that skips modeling how each document was written and just focuses on separating the labels?,paraphrased,04 - Statistical Task Classification.pdf,27,L04_p27
+Q27,What is the difference between L1 and L2 regularisation in logistic regression?,direct,04 - Statistical Task Classification.pdf,35,L04_p35
+Q28,My classifier is right 9 times out of 10. Does that automatically mean it's a good model?,paraphrased,04 - Statistical Task Classification.pdf,38,L04_p38
+Q29,"If my spam filter keeps sending real emails to the junk folder, is that a precision problem or a recall problem?",paraphrased,04 - Statistical Task Classification.pdf,40,L04_p40
+Q30,What is the F1 score and why is it based on the harmonic mean of precision and recall?,direct,04 - Statistical Task Classification.pdf,41,L04_p41
