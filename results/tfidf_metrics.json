@@ -1,0 +1,57 @@
+{
+  "method": "word unigram TF-IDF with cosine similarity",
+  "scikit_learn_version": "1.9.1",
+  "n_chunks": 91,
+  "vocabulary_size": 1235,
+  "vectorizer_parameters": {
+    "lowercase": true,
+    "token_pattern": "(?u)\\b\\w+\\b",
+    "ngram_range": [
+      1,
+      1
+    ],
+    "stop_words": null,
+    "smooth_idf": true,
+    "norm": "l2",
+    "sublinear_tf": false,
+    "use_idf": true
+  },
+  "ranking": "positive scores only; exact ties resolved by chunk_id",
+  "metrics": {
+    "all": {
+      "n_questions": 30,
+      "top1_hits": 8,
+      "top3_hits": 16,
+      "top1_accuracy": 0.26666666666666666,
+      "top3_accuracy": 0.5333333333333333
+    },
+    "type:direct": {
+      "n_questions": 15,
+      "top1_hits": 6,
+      "top3_hits": 12,
+      "top1_accuracy": 0.4,
+      "top3_accuracy": 0.8
+    },
+    "document:03 - Language Models.pdf": {
+      "n_questions": 15,
+      "top1_hits": 3,
+      "top3_hits": 6,
+      "top1_accuracy": 0.2,
+      "top3_accuracy": 0.4
+    },
+    "type:paraphrased": {
+      "n_questions": 15,
+      "top1_hits": 2,
+      "top3_hits": 4,
+      "top1_accuracy": 0.13333333333333333,
+      "top3_accuracy": 0.26666666666666666
+    },
+    "document:04 - Statistical Task Classification.pdf": {
+      "n_questions": 15,
+      "top1_hits": 5,
+      "top3_hits": 10,
+      "top1_accuracy": 0.3333333333333333,
+      "top3_accuracy": 0.6666666666666666
+    }
+  }
+}

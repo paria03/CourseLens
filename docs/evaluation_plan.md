@@ -112,6 +112,8 @@ Our first baseline represents each of the 91 chunks as a TF-IDF vector, ranks ch
   - error analysis of individual misses;
   - semantic retrieval experiments, such as word embeddings, on the same labeled questions.
 
+See `results/tfidf_metrics.json` for configuration and breakdowns and `results/tfidf_predictions.csv` for individual rankings. Run `python evaluate_tfidf.py` to reproduce the results.
+
 ## 8. Limitations
 
 - **Small dataset.** With 30 questions, each question is worth about 3.3 percentage points overall and 6.7 points within a 15-question group, so small differences between systems or groups should not be over-interpreted.
